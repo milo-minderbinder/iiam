@@ -1,0 +1,13 @@
+.git/
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+init.gradle
+
+*.iml
+*.ipr
+*.iws
+
+*.sw[po]
+

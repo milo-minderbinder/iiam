@@ -1,0 +1,66 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'idea'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+	mavenCentral()
+	mavenLocal()
+    jcenter()
+}
+
+ext {
+	javaxServletVersion = "3.0.1"
+	springVersion = "4.1.5.RELEASE"
+	postgresVersion = "9.4-1201-jdbc41"
+	h2Version = "1.4.185"
+	springDataJpaVersion = "1.7.1.RELEASE"
+	hibernateJpaApiVersion = "1.0.0.Final"
+	hibernateEntityManagerVersion = "4.3.8.Final"
+	cglibVersion = "3.1"
+	thymeleafSpringVersion = "2.1.4.RELEASE"
+	thymeleafSpringSecurityVersion = "2.1.1.RELEASE"
+	springSecurityVersion = "3.2.6.RELEASE"
+	javaxValidationApiVersion = "1.1.0.Final"
+	hibernateValidatorVersion = "5.1.3.Final"
+	slf4jVersion = "1.7.10"
+	junitVersion = "4.12"
+	mockitoVersion = "1.10.19"
+	hamcrestVersion = "1.3"
+}
+
+dependencies {
+	compile "javax.servlet:javax.servlet-api:$javaxServletVersion"
+    compile 'org.slf4j:slf4j-api:1.7.7'
+
+	compile "org.springframework:spring-core:$springVersion"
+	compile "org.springframework:spring-webmvc:$springVersion"
+	
+	compile "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+	compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpaApiVersion"
+	compile "org.hibernate:hibernate-entitymanager:$hibernateEntityManagerVersion"
+	['spring-orm', 'spring-aop', 'spring-beans', 'spring-tx', 'spring-expression', 'spring-context'].each {
+		compile "org.springframework:$it:$springVersion"
+	}
+	compile "cglib:cglib:$cglibVersion"
+	compile "org.postgresql:postgresql:$postgresVersion"
+	runtime "com.h2database:h2:$h2Version"
+
+	compile "org.thymeleaf:thymeleaf-spring4:$thymeleafSpringVersion"
+	compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity3:$thymeleafSpringSecurityVersion"
+
+	compile "org.springframework.security:spring-security-web:$springSecurityVersion"
+	compile "org.springframework.security:spring-security-core:$springSecurityVersion"
+	compile "org.springframework.security:spring-security-config:$springSecurityVersion"
+
+	compile "javax.validation:validation-api:$javaxValidationApiVersion"
+	compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+	
+	compile "org.slf4j:slf4j-api:$slf4jVersion"
+	runtime "org.slf4j:slf4j-log4j12:$slf4jVersion"
+
+	testCompile "org.springframework:spring-test:$springVersion"
+	testCompile "junit:junit:$junitVersion"
+	testCompile "org.mockito:mockito-core:$mockitoVersion"
+	testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+}

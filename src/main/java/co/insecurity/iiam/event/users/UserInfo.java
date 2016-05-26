@@ -73,10 +73,15 @@ public class UserInfo implements Serializable {
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("UserInfo[username=%s, roles=%s, first=%s, last=%s",
-				username, roles.toString(), firstName, lastName);
+		return "UserInfo{" +
+				"username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", roles=" + roles +
+				'}';
 	}
 }

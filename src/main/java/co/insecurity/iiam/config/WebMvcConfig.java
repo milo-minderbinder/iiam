@@ -27,7 +27,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @EnableWebMvc
 @EnableSpringDataWebSupport
 @EnableGlobalMethodSecurity(prePostEnabled=true)
-@ComponentScan(basePackages = {"co.insecurity.iiam.web.controller", "co.insecurity.iiam.web.domain"})
+@ComponentScan(basePackages = {"co.insecurity.iiam.rest.controller", "co.insecurity.iiam.rest.domain"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

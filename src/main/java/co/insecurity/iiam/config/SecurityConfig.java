@@ -18,6 +18,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -30,6 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserPersistenceService userService;
+
+    @Autowired
+    private SessionRegistry sessionRegistry;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -63,6 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .hasRole(UserRole.ADMIN.toString())
                 .antMatchers("/user/**")
                     .hasRole(UserRole.USER.toString())
+                .antMatchers("/**")
+                    .permitAll()
                 .and()
             .formLogin()
                 .loginPage("/login")
@@ -74,6 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement()
                 .maximumSessions(1)
                 .expiredUrl("/login?logout")
+                .sessionRegistry(sessionRegistry)
                 .and()
                 .invalidSessionUrl("/login?logout");
     }
@@ -82,6 +90,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public SessionRegistry getSessionRegistry() {
+        return new SessionRegistryImpl();
     }
 
     @Bean

@@ -1,4 +1,4 @@
-package co.insecurity.iiam.web.controller;
+package co.insecurity.iiam.rest.controller;
 
 
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package co.insecurity.iiam.web.controller;
+package co.insecurity.iiam.rest.controller;
 
 import co.insecurity.iiam.event.users.RequestUserInfoEvent;
 import co.insecurity.iiam.event.users.UserInfo;

@@ -11,3 +11,5 @@ init.gradle
 
 *.sw[po]
 
+build/
+*.jks

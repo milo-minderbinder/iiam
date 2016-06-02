@@ -10,8 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -23,6 +29,15 @@ class BaseController {
 
     @Autowired
     protected PasswordEncoder passwordEncoder;
+
+    @Autowired
+    protected SessionRegistry sessionRegistry;
+
+    private List<SessionInformation> getActiveSessions() {
+        return sessionRegistry.getAllPrincipals().stream()
+                .flatMap(p -> sessionRegistry.getAllSessions(p, false).stream())
+                .collect(Collectors.toList());
+    }
 
     /**
      * Tries to retrieve the user from the {@link UserPersistenceService} with

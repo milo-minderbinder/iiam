@@ -1,6 +1,6 @@
 package co.insecurity.iiam.event.users;
 
-import co.insecurity.iiam.core.domain.UserRole;
+import co.insecurity.iiam.model.UserRole;
 
 import java.io.Serializable;
 import java.util.HashSet;

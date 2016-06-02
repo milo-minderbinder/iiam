@@ -18,15 +18,15 @@ public enum UserRole {
 	}
 
 	/**
-	 * Constructs a {@code SimpleGrantedAuthority} representing this 
-	 * {@code UserRole}.
+	 * Constructs a {@link SimpleGrantedAuthority} representing this
+	 * {@link UserRole}.
 	 * 
-	 * Note that the {@code SimpleGrantedAuthority} is constructed with 
-	 * the String representation of this {@code UserRole} prefixed by  
+	 * Note that the {@link SimpleGrantedAuthority} is constructed with
+	 * the String representation of this {@link UserRole} prefixed by
 	 * the String {@code "ROLE_"}.
 	 * 
-	 * @return the {@code SimpleGrantedAuthority} representing this 
-	 * {@code UserRole}
+	 * @return the {@link SimpleGrantedAuthority} representing this
+	 * {@link UserRole}
 	 */
 	public SimpleGrantedAuthority toSimpleGrantedAuthority() {
 		return new SimpleGrantedAuthority("ROLE_" + roleName);

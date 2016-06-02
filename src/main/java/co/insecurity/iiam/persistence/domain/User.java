@@ -1,6 +1,6 @@
 package co.insecurity.iiam.persistence.domain;
 
-import co.insecurity.iiam.core.domain.UserRole;
+import co.insecurity.iiam.model.UserRole;
 import co.insecurity.iiam.event.users.UserInfo;
 import co.insecurity.iiam.persistence.service.UserPersistenceEventHandler;
 import org.slf4j.Logger;
@@ -11,10 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -122,10 +121,10 @@ public class User implements UserDetails, Serializable {
 	}
 	
 	@Override
-	public List<GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (UserRole userRole : roles)
-			authorities.add(userRole.toSimpleGrantedAuthority());
+	public Set<GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> authorities = roles.stream()
+				.map(UserRole::toSimpleGrantedAuthority)
+				.collect(Collectors.toSet());
 		if (authorities.size() == 0)
 			authorities.add(UserRole.ANONYMOUS.toSimpleGrantedAuthority());
 		return authorities;

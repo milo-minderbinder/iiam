@@ -1,7 +1,7 @@
 package co.insecurity.iiam.persistence.service;
 
 
-import co.insecurity.iiam.core.domain.UserRole;
+import co.insecurity.iiam.model.UserRole;
 import co.insecurity.iiam.event.users.*;
 import co.insecurity.iiam.persistence.domain.User;
 import co.insecurity.iiam.persistence.repository.UserRepository;

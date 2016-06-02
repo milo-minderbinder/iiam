@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
-import co.insecurity.iiam.core.domain.UserRole;
+import co.insecurity.iiam.model.UserRole;
 import co.insecurity.iiam.event.users.UserInfo;
 
 public class User {

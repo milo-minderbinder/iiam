@@ -1,6 +1,6 @@
 package co.insecurity.iiam.config;
 
-import co.insecurity.iiam.core.domain.UserRole;
+import co.insecurity.iiam.model.UserRole;
 import co.insecurity.iiam.event.users.CreateUserEvent;
 import co.insecurity.iiam.event.users.UserInfo;
 import co.insecurity.iiam.persistence.service.UserPersistenceService;
@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -108,6 +111,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(passwordEncoder);
         authProvider.setUserDetailsService(userService);
         return authProvider;
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer properties() {
+        PropertySourcesPlaceholderConfigurer propertySources = new PropertySourcesPlaceholderConfigurer();
+        Resource[] resources = new ClassPathResource[] { new ClassPathResource("setup.properties") };
+        propertySources.setLocations(resources);
+        propertySources.setIgnoreUnresolvablePlaceholders(true);
+        return propertySources;
     }
 }
 
